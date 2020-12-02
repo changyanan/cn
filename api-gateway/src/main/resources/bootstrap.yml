@@ -1,0 +1,72 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    include:
+      - eureka-client
+      - gateway
+      - redis
+#  redis:
+#    host: 10.60.33.32
+#    port: 6418
+#    password: 6e1KWyC29w
+#    timeout: 6000ms
+#    jedis:
+#      pool:
+#        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+#        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+#        max-idle: 10      # 连接池中的最大空闲连接
+#        min-idle: 5       # 连接池中的最小空闲连接
+
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: custom_response_route
+#          uri: http://c.biancheng.net
+#          predicates:
+#            - Path=/spring_cloud/**
+#          filters:
+#            - name: CustomResponse
+#              args:
+#                cookie: customCookieName=customCookieValue
+#                header: customHeaderName=customHeaderValue
+#        - id: ribbon-eureka-demo1
+#          uri: lb://ribbon-eureka-demo
+#          predicates:
+#            - Path=/call/**
+#          filters:
+#            - CheckAuth=zhangsan,男
+#            - CheckAuth2=true
+#            - name: CheckAuth2
+#              args:
+#                name: 张三
+#      discovery:
+#        locator:
+#          enabled: true
+#          lowerCaseServiceId: true
+
+logging:
+  file:
+    name: D://project//public-manage//logs//all.log
+  pattern:
+    file: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta}
+      %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint}
+      %m%n%wEx'
+management:
+  endpoint:
+    conditions:
+      enabled: true
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+

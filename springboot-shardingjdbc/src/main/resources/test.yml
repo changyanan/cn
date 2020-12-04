@@ -1,0 +1,35 @@
+spring:
+  # 相关的配置
+  shardingsphere:
+    props:
+      sql:
+        show: true
+    datasource:
+      names: ds1
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://localhost:3306/sharding1?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+        username: root
+        password: root
+    sharding:
+      tables:
+        # 这个地方注意： sharding-jdbc会根据名称去找本节点，所以写sql的时候，要写此节点的名称
+        t_student:
+          # 表达式， 健康节点： 根据上一个节点找到此值， {1..2}为groovy语言，$会替换成{1..2}的一个值，数据库表是: t_student_1 , t_student_2
+          # 这个配置是告诉sharding有多少个表
+          actual-data-nodes: ds1.t_student_$->{1..2}
+          # 主键生成策略
+          key-generator:
+            # 对应的数据库表的主键
+            column: n_id
+            # 生成方式， 雪花模式
+            type: SNOWFLAKE
+          # 配置其分片策略和分片算法
+          table-strategy:
+            # 行表达式
+            inline:
+              # 配置sharding的计算列
+              sharding-column: n_id
+              # 配置sharding的表达式,对应的n_id必须和sharding-column的值对应，否则报错
+              algorithm-expression: t_student_$->{n_id % 2 +1}

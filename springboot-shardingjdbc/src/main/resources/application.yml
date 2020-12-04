@@ -1,0 +1,30 @@
+server:
+  port: 8001
+  # Ïà¹ØµÄÅäÖÃ
+spring:
+  application:
+    name: sharding-jdbc
+  shardingsphere:
+    props:
+      sql:
+        show: true
+    datasource:
+      names: ds1
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://111.230.6.24:3306/sharding1?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+        username: root
+        password: 123456
+    sharding:
+      tables:
+        t_student:
+          actual-data-nodes: ds1.t_student_$->{1..2}
+          key-generator:
+            column: n_id
+            type: SNOWFLAKE
+          table-strategy:
+            #fdsdfsd
+            inline:
+              sharding-column: n_id
+              algorithm-expression: t_student_$->{n_id % 2 +1}

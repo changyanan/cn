@@ -15,15 +15,15 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: custom_response_route
-          uri: http://c.biancheng.net
-          predicates:
-            - Path=/spring_cloud/**
-          filters:
-            - name: CustomResponse
-              args:
-                cookie: customCookieName=customCookieValue
-                header: customHeaderName=customHeaderValue
+#        - id: custom_response_route
+#          uri: http://c.biancheng.net
+#          predicates:
+#            - Path=/spring_cloud/**
+#          filters:
+#            - name: CustomResponse
+#              args:
+#                cookie: customCookieName=customCookieValue
+#                header: customHeaderName=customHeaderValue
         - id: ribbon-eureka-demo1
           uri: lb://ribbon-eureka-demo
           predicates:

@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author changyanan1
@@ -14,6 +15,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 @EnableFeignClients(basePackages = "com.example.springresttemplate.api.client")
 @EnableHystrix
 @SpringBootApplication
+@EnableScheduling
 public class SpringRestTemplateApplication {
 
     public static void main(String[] args) {

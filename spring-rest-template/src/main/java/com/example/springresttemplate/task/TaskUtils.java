@@ -23,6 +23,7 @@ public class TaskUtils {
     void execute() {
         taskModels.forEach(taskModel -> {
             execute(taskModel);
+            System.out.println();
         });
     }
 

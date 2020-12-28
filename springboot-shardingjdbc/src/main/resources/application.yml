@@ -1,6 +1,6 @@
 server:
   port: 8001
-  # Ïà¹ØµÄÅäÖÃ
+  #
 spring:
   application:
     name: sharding-jdbc

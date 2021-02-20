@@ -7,6 +7,14 @@ public class AuthInfo {
     private String code;
     private String info = "";
 
+    public AuthInfo(String code, String... infos) {
+        this.code = code;
+        for (String info : infos) {
+            this.info = this.info.concat(info);
+        }
+        this.info = info;
+    }
+
     public String getCode() {
         return code;
     }

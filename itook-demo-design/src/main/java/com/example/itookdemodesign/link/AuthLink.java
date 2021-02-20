@@ -36,5 +36,12 @@ public abstract class AuthLink {
         return this;
     }
 
+    /**
+     * test
+     * @param uId
+     * @param orderId
+     * @param authDate
+     * @return
+     */
     public abstract AuthInfo doAuth(String uId, String orderId, Date authDate);
 }
